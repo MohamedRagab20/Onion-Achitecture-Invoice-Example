@@ -1,0 +1,94 @@
+﻿@using Invoice.Data.Models
+@model List<Invoice>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-edit"></i>Invoices
+                </div>
+                
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="btn-group">
+                                <button id="btnAddNew" class="btn green" onclick="AddNewInvoice()">
+                                    Add New <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                    <thead>
+                        <tr>
+                            <th>
+                                Invoice No
+                            </th>
+                            <th>
+                                Invoice Date
+                            </th>
+                            <th>
+                                Total Price
+                            </th>
+                            <th>
+                                Taxes
+                            </th>
+                            <th>
+                                Total
+                            </th>
+                            <th>
+                                Net
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Invoice invoice in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @invoice.InvoiceNo
+                                </td>
+                                <td>
+                                    @invoice.InvoiceDate.Value.ToShortDateString()
+                                </td>
+                                <td>
+                                    @invoice.Total
+                                </td>
+                                <td>
+                                    @invoice.Taxes
+                                </td>
+                                <td>
+                                    @invoice.Total
+                                </td>
+                                <td>
+                                    @invoice.Net
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/assets/admin/pages/scripts/table-editable.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableEditable.init();
+        })
+
+        function AddNewInvoice() {
+            window.location = "/Home/AddInvoice";
+        }
+    </script>
+}
