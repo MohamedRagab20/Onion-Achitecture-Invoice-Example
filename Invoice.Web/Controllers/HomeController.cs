@@ -61,39 +61,46 @@ namespace Invoice.Web.Controllers
         [HttpPost]
         public IActionResult SaveInvoice([FromBody]InvoiceViewModel[] invoice)
         {
-            for (int i = 0; i < invoice.Length; i++)
+            try
             {
-                Invoice.Data.Models.Invoice invoiceData = new Invoice.Data.Models.Invoice()
+                for (int i = 0; i < invoice.Length; i++)
                 {
-                    InvoiceDate = DateTime.Now,
-                    InvoiceNo = Convert.ToInt32(invoice[i].InvoiceNo),
-                    Net = Convert.ToInt32(invoice[i].Net),
-                    StoreId = Convert.ToInt32(invoice[i].StoreId),
-                    Taxes = Convert.ToDecimal(invoice[i].Taxes),
-                    Total = Convert.ToDecimal(invoice[i].Total)
-                };
-
-                foreach (InvoiceDetailViewModel invDetail in invoice[i].invoiceDetails)
-                {
-                    InvoiceDetails detail = new InvoiceDetails()
+                    Invoice.Data.Models.Invoice invoiceData = new Invoice.Data.Models.Invoice()
                     {
-                        InvoiceId = invoiceData.Id,
-                        ItemId = Convert.ToInt32(invDetail.ItemId),
-                        Net = Convert.ToInt32(invDetail.Net),
-                        Price = Convert.ToInt32(invDetail.Price),
-                        Qty = Convert.ToInt32(invDetail.Qty),
-                        Total = Convert.ToDecimal(invDetail.Total),
-                        UnitId = Convert.ToInt32(invDetail.UnitId),
-                        Discount = Convert.ToInt32(invDetail.Discount)
+                        InvoiceDate = DateTime.Now,
+                        InvoiceNo = Convert.ToInt32(invoice[i].InvoiceNo),
+                        Net = Convert.ToInt32(invoice[i].Net),
+                        StoreId = Convert.ToInt32(invoice[i].StoreId),
+                        Taxes = Convert.ToDecimal(invoice[i].Taxes),
+                        Total = Convert.ToDecimal(invoice[i].Total)
                     };
 
-                    invoiceData.InvoiceDetails.Add(detail);
+                    foreach (InvoiceDetailViewModel invDetail in invoice[i].invoiceDetails)
+                    {
+                        InvoiceDetails detail = new InvoiceDetails()
+                        {
+                            InvoiceId = invoiceData.Id,
+                            ItemId = Convert.ToInt32(invDetail.ItemId),
+                            Net = Convert.ToInt32(invDetail.Net),
+                            Price = Convert.ToInt32(invDetail.Price),
+                            Qty = Convert.ToInt32(invDetail.Qty),
+                            Total = Convert.ToDecimal(invDetail.Total),
+                            UnitId = Convert.ToInt32(invDetail.UnitId),
+                            Discount = Convert.ToInt32(invDetail.Discount)
+                        };
+
+                        invoiceData.InvoiceDetails.Add(detail);
+                    }
+
+                    invoiceService.InsertInvoice(invoiceData);
                 }
 
-                invoiceService.InsertInvoice(invoiceData);
+                return Ok(true);
             }
-
-            return Ok();
+            catch
+            {
+                return Ok(false);
+            }
         }
     }
 }

@@ -38,23 +38,28 @@ namespace Invoice.Service
 
         public void InsertInvoice(Data.Models.Invoice invoice)
         {
-            using (TransactionScope scope = new TransactionScope())
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                repository.Insert(invoice);
-
-                foreach (InvoiceDetails detail in invoice.InvoiceDetails)
                 {
-                    detail.InvoiceId = invoice.Id;
-                    invDetailsService.InsertInvoiceDetail(detail);
+                    repository.Insert(invoice);
+                    try
+                    {
+                        foreach (InvoiceDetails detail in invoice.InvoiceDetails)
+                        {
+                            detail.InvoiceId = invoice.Id;
+                            invDetailsService.InsertInvoiceDetail(detail);
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                    }
                 }
-
-                scope.Complete();
+                repository.SaveChanges();
             }
-
-            repository.SaveChanges();
-
         }
-
         public void UpdateInvoice(Data.Models.Invoice invoice)
         {
             throw new NotImplementedException();

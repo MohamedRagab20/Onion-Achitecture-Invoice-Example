@@ -137,7 +137,7 @@ $(document).ready(function () {
             $('#sample_editable_1_new').click(function (e) {
                 e.preventDefault();
 
-                var aiNew = oTable.fnAddData(['', '', '', '', '', '', '','']);
+                var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', '']);
                 var nRow = oTable.fnGetNodes(aiNew[0]);
                 editRow(oTable, nRow);
                 nEditing = nRow;
@@ -266,9 +266,15 @@ function SaveInvoice() {
         dataType: "json",
         success: function (result) {
 
-            alert('Invoice Added');
+            if (result == true) {
 
-            setTimeout(function () { window.location = "/Home"; }, 2000);
+                alert('Invoice Added');
+
+                setTimeout(function () { window.location = "/Home"; }, 2000);
+            }
+            else {
+                alert('Please enter correct data');
+            }
         }
     });
 }
