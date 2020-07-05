@@ -45,6 +45,7 @@ namespace Invoice.Repository
                 throw new ArgumentNullException("entity");
             }
             entities.Add(entity);
+            //context.SaveChanges();
         }
 
         public void Remove(T entity)
