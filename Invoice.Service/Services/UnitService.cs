@@ -1,8 +1,7 @@
-﻿using Invoice.Data.Models;
+﻿using Invoice.Data.Entities;
 using Invoice.Repository;
-using System;
+using Invoice.Repository.Migrations;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Invoice.Service
 {

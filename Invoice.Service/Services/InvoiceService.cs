@@ -1,20 +1,18 @@
-﻿using Invoice.Data.Models;
+﻿using Invoice.Data.Entities;
 using Invoice.Repository;
+using Invoice.Repository.Migrations;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Text;
-using System.Transactions;
 
 namespace Invoice.Service
 {
     public class InvoiceService : IInvoiceService
     {
-        private readonly Repository.IRepository<Invoice.Data.Models.Invoice> repository;
+        private readonly Repository.IRepository<Invoice.Repository.Migrations.Invoice> repository;
         private readonly DynamcisLinkDBContext _context;
         private readonly IInvoiceDetailService invDetailsService;
 
-        public InvoiceService(IRepository<Invoice.Data.Models.Invoice> repository, DynamcisLinkDBContext _context, IInvoiceDetailService invDetailsService)
+        public InvoiceService(IRepository<Invoice.Repository.Migrations.Invoice> repository, DynamcisLinkDBContext _context, IInvoiceDetailService invDetailsService)
         {
             this.repository = repository;
             this._context = _context;
@@ -26,17 +24,17 @@ namespace Invoice.Service
             throw new NotImplementedException();
         }
 
-        public Data.Models.Invoice GetInvoice(long id)
+        public Invoice.Repository.Migrations.Invoice GetInvoice(long id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Data.Models.Invoice> GetInvoices()
+        public IEnumerable<Invoice.Repository.Migrations.Invoice> GetInvoices()
         {
             return repository.GetAll();
         }
 
-        public void InsertInvoice(Data.Models.Invoice invoice)
+        public void InsertInvoice(Invoice.Repository.Migrations.Invoice invoice)
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
@@ -60,7 +58,7 @@ namespace Invoice.Service
                 repository.SaveChanges();
             }
         }
-        public void UpdateInvoice(Data.Models.Invoice invoice)
+        public void UpdateInvoice(Invoice.Repository.Migrations.Invoice invoice)
         {
             throw new NotImplementedException();
         }

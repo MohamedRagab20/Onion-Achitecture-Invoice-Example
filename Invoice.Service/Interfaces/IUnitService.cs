@@ -1,7 +1,5 @@
-﻿using Invoice.Data.Models;
-using System;
+﻿using Invoice.Repository.Migrations;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Invoice.Service
 {

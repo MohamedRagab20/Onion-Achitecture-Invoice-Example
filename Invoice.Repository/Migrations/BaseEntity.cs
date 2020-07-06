@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Invoice.Data
+﻿namespace Invoice.Repository
 {
     public class BaseEntity
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Invoice.Data.Models
+namespace Invoice.Repository.Migrations
 {
     public partial class Stores : BaseEntity
     {

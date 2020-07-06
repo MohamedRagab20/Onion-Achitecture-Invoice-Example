@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Invoice.Data.Models
+namespace Invoice.Data.Entities
 {
-    public partial class Invoice : BaseEntity
+    public partial class InvoiceVM
     {
-        public Invoice()
+        public InvoiceVM()
         {
-            InvoiceDetails = new HashSet<InvoiceDetails>();
+            InvoiceDetails = new HashSet<InvoiceDetailsVM>();
         }
-
+        public int Id { get; set; }
         public int? InvoiceNo { get; set; }
         public int StoreId { get; set; }
         public DateTime? InvoiceDate { get; set; }
@@ -17,7 +17,7 @@ namespace Invoice.Data.Models
         public decimal? Taxes { get; set; }
         public decimal? Net { get; set; }
 
-        public virtual Stores Store { get; set; }
-        public virtual ICollection<InvoiceDetails> InvoiceDetails { get; set; }
+        public virtual StoresVM Store { get; set; }
+        public virtual ICollection<InvoiceDetailsVM> InvoiceDetails { get; set; }
     }
 }

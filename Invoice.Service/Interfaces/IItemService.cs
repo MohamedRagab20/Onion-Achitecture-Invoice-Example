@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Invoice.Repository.Migrations;
 using System.Collections.Generic;
-using System.Text;
-using Invoice.Data.Models;
 namespace Invoice.Service
 {
     public interface IItemService

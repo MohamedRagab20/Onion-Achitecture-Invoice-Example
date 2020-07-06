@@ -1,10 +1,10 @@
 ﻿using Invoice.Data;
-using Invoice.Data.Models;
+using Invoice.Data.Entities;
+using Invoice.Repository.Migrations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Invoice.Repository
 {

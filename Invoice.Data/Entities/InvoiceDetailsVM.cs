@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Invoice.Data.Models
+﻿namespace Invoice.Data.Entities
 {
-    public partial class InvoiceDetails : BaseEntity
+    public partial class InvoiceDetailsVM
     {
+        public int Id { get; set; }
         public int InvoiceId { get; set; }
         public int ItemId { get; set; }
         public int UnitId { get; set; }
@@ -14,8 +12,8 @@ namespace Invoice.Data.Models
         public decimal? Discount { get; set; }
         public decimal? Net { get; set; }
 
-        public virtual Invoice Invoice { get; set; }
-        public virtual Items Item { get; set; }
-        public virtual Units Unit { get; set; }
+        public virtual InvoiceVM Invoice { get; set; }
+        public virtual ItemsVM Item { get; set; }
+        public virtual UnitsVM Unit { get; set; }
     }
 }

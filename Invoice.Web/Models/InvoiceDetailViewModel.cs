@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Invoice.Web.Models
+﻿namespace Invoice.Web.Models
 {
     public class InvoiceDetailViewModel
     {

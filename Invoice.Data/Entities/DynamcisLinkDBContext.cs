@@ -1,10 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Data.Common;
-using System.Data.Entity.Core.Objects;
-using System.Data.Entity.Infrastructure;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Invoice.Data.Models
 {
@@ -29,8 +23,10 @@ namespace Invoice.Data.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#pragma warning disable CS1030 // #warning: 'To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.'
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Server=DESKTOP-KSTACTV;Database=DynamcisLinkDB;Trusted_Connection=True;");
+#pragma warning restore CS1030 // #warning: 'To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.'
             }
         }
 

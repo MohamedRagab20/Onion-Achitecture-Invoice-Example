@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Invoice.Data.Entities;
+using Invoice.Repository.Migrations;
+using Invoice.Service;
+using Invoice.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Invoice.Web.Models;
-using Invoice.Service;
-using Invoice.Data.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Invoice.Web.Controllers
 {
@@ -65,7 +64,7 @@ namespace Invoice.Web.Controllers
             {
                 for (int i = 0; i < invoice.Length; i++)
                 {
-                    Invoice.Data.Models.Invoice invoiceData = new Invoice.Data.Models.Invoice()
+                    Invoice.Repository.Migrations.Invoice invoiceData = new Invoice.Repository.Migrations.Invoice()
                     {
                         InvoiceDate = DateTime.Now,
                         InvoiceNo = Convert.ToInt32(invoice[i].InvoiceNo),
